@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { faBook, faCodeBranch, faInfoCircle, faList } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -33,9 +33,11 @@ const PageHeaderActions: React.FC<Props> = ({ currentPage }) => {
       {links.map((link) => {
         if (link.show) return null;
         return (
-          <Link className="btn" to={link.path}>
-            <span>{link.name}</span>
-            <FontAwesomeIcon icon={link.icon} />
+          <Link key={link.name} className="btn" href={link.path}>
+            <a>
+              <span>{link.name}</span>
+              <FontAwesomeIcon icon={link.icon} />
+            </a>
           </Link>
         );
       })}

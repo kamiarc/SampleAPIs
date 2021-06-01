@@ -1,7 +1,7 @@
 import { faLink, faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { APIData } from "../../utils/Interfaces";
 import APICategories from "../APICategories/APICategories";
 
@@ -17,8 +17,10 @@ const APICard: React.FC<Props> = ({ api, featured = false }) => {
         <APICategories categories={api.metaData.categories} />
         <header className="api-card__header">
           <h2 className="api-card__title">{api.metaData.title}</h2>
-          <Link className="btn" to={`api-list/${api.link}`}>
-            <FontAwesomeIcon icon={faLink} />
+          <Link className="btn" href={`api-list/${api.link}`}>
+            <a>
+              <FontAwesomeIcon icon={faLink} />
+            </a>
           </Link>
           {featured && (
             <span className="featured-icon">

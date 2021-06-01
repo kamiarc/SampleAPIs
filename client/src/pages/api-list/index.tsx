@@ -4,14 +4,19 @@ import APIFilter from "../../components/APIFilter/APIFilter";
 import APISearch from "../../components/APISearch/APISearch";
 import PageHeaderActions from "../../components/PageHeaderActions/PageHeaderActions";
 import { GlobalContext } from "../../context/GlobalContext";
+import { getAllProjects } from "../../lib/api";
+import { APIData } from "../../utils/Interfaces";
 
-interface Props {}
+interface Props {
+  apiList: APIData[];
+}
 
-const APIList: React.FC<Props> = () => {
-  const { apiList, apiCategories } = useContext(GlobalContext);
+const APIList: React.FC<Props> = ({ apiList }) => {
+  // const { apiList, apiCategories } = useContext(GlobalContext);
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [searchWord, setSearchWord] = useState("");
   const [filteredList, setFilteredList] = useState(apiList);
+  const apiCategories: string[] = [];
 
   useEffect(() => {
     const categories = apiList.filter((api) =>
@@ -51,7 +56,7 @@ const APIList: React.FC<Props> = () => {
           </h3>
           <div className="actions">
             <APISearch onChangeHandler={searchAPIName} />
-            <APIFilter onChangeHandler={filterData} categories={apiCategories} />
+            <APIFilter onChangeHandler={filterData} categories={apiCategories || []} />
           </div>
         </div>
         <div className="cards-grid">
@@ -66,3 +71,10 @@ const APIList: React.FC<Props> = () => {
 };
 
 export default APIList;
+
+export async function getStaticProps() {
+  const apiList = await getAllProjects();
+  return {
+    props: { apiList },
+  };
+}

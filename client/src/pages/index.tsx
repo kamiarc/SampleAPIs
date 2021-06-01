@@ -1,15 +1,17 @@
 import React, { useContext, useEffect, useState } from "react";
-import "./Home.scss";
 
-import APICard from "../../components/APICard/APICard";
-import { GlobalContext } from "../../context/GlobalContext";
-import { APIData } from "../../utils/Interfaces";
-import PageHeaderActions from "../../components/PageHeaderActions/PageHeaderActions";
+import APICard from "../components/APICard/APICard";
+import { GlobalContext } from "../context/GlobalContext";
+import { APIData } from "../utils/Interfaces";
+import PageHeaderActions from "../components/PageHeaderActions/PageHeaderActions";
+import { getAllProjects } from "../lib/api";
 
-interface Props {}
+interface Props {
+  apiList: APIData[];
+}
 
-const Home: React.FC<Props> = () => {
-  const { apiList } = useContext(GlobalContext);
+const Home: React.FC<Props> = ({ apiList }) => {
+  // const { apiList } = useContext(GlobalContext);
   const [featuredAPIs, setFeatureAPIs] = useState([] as APIData[]);
 
   useEffect(() => {
@@ -49,3 +51,10 @@ const Home: React.FC<Props> = () => {
 };
 
 export default Home;
+
+export async function getStaticProps() {
+  const apiList = await getAllProjects();
+  return {
+    props: { apiList },
+  };
+}

@@ -25,9 +25,12 @@ router.get("/:name", async (req, res) => {
     await getApiList();
   }
 
+  const name = req.params.name;
+  console.log({ name });
+  const data = APIList.filter(item => item.name == name)[0];
   res.json({
-    data: 200,
-    id: req.params.name,
+    status: 200,
+    data
   });
 });
 
