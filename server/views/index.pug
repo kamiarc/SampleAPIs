@@ -20,7 +20,7 @@ body
           .copied
             p Copied!
           code(spellcheck="false")
-            p const baseURL = "https://onesight.com.br:5555/futurama/characters";
+            p const baseURL = "http://#{domain}/futurama/characters";
             p fetch(baseURL)
             p   .then(resp => resp.json())
             p   .then(data => console.log(data));
@@ -31,7 +31,7 @@ body
           .copied
             p Copied!
           code(spellcheck="false")
-            p const baseURL = "https://onesight.com.br:5555/futurama/characters";
+            p const baseURL = "http://#{domain}/futurama/characters";
             p fetch(`${baseURL}?name.first=Bender`)
             p   .then(resp => resp.json())
             p   .then(data => console.log(data));

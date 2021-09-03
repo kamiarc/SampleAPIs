@@ -42,7 +42,8 @@ const create = require("./routes/create-apis");
 
 app.get("/", (req, res) => {
   res.render("index", {
-    apiList: JSON.stringify(ApiList)
+    apiList: JSON.stringify(ApiList),
+    domain: req.headers.host
   });
 });
 
