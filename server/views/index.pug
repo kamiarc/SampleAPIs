@@ -3,17 +3,15 @@ body
   main#app
     article.site
       .site__inner
-        h1.site__title Sample APIs
+        h1.site__title Onesight Test APIs
         p
-          | Welcome to SampleAPIs. A playground for messing with RESTful and GraphQL endpoints. Checkout the project on 
-          a(href="https://github.com/jermbo/SampleAPIs") GitHub 
-          | and consider contributing to the project with a new endpoint!
+          | Welcome, the API's listed on the right can be used for our programming test 
         p
         | You can use any HTTP verbs (GET, POST, PUT, PATCH and DELETE) and
         | access your resources from anywhere using CORS and JSONP.
         p.disclaimer
           | * The data on this site is for educational purposes only and is not
-          | owned by SampleAPIs.com
+          | owned by Onesight
         p.disclaimer
           | * The data on this site will be reset on a regular basis.
         p.example_code Example code:
@@ -22,7 +20,7 @@ body
           .copied
             p Copied!
           code(spellcheck="false")
-            p const baseURL = "https://sampleapis.com/futurama/api/characters";
+            p const baseURL = "https://onesight.com.br:5555/futurama/characters";
             p fetch(baseURL)
             p   .then(resp => resp.json())
             p   .then(data => console.log(data));
@@ -33,7 +31,7 @@ body
           .copied
             p Copied!
           code(spellcheck="false")
-            p const baseURL = "https://sampleapis.com/futurama/api/characters";
+            p const baseURL = "https://onesight.com.br:5555/futurama/characters";
             p fetch(`${baseURL}?name.first=Bender`)
             p   .then(resp => resp.json())
             p   .then(data => console.log(data));
@@ -48,8 +46,12 @@ template#api
     .api__inner
       h2.api__title {{ api.title }}
       p.api__desc {{ api.desc }}
-      a.api__link(:href="api.link") API Link
-      a.api__link(:href="api.graphLink" target="_blank") GRAPHQL Link
+      //- a.api__link(:href="api.link") API Link
+      //- a.api__link(:href="api.graphLink" target="_blank") GRAPHQL Link
+      p Endpoints
+      ul.api__list
+        li(v-for="ends in api.endPoints")
+          a.api__link(:href="api.link+'/'+ends") {{ ends }}
 
 script(src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js")
 script.

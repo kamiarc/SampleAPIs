@@ -106,6 +106,13 @@ a {
   margin: 0 0 0.625rem;
 }
 
+.api__list{
+  list-style: none;
+  padding: 0px;
+}
+.api__list li{
+  display: inline-block;
+}
 .api__link {
   color: #161616;
   text-decoration: none;
