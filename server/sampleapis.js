@@ -8,7 +8,7 @@ const ApiList = require("./apiList");
 
 // Express App
 const app = express();
-const port = process.env.PORT || 5555;
+const port = process.env.PORT || 2052;
 
 
 const APIList = require("./apiList");
